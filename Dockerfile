@@ -18,7 +18,7 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 # Copy the application code
-COPY ./DWS /var/www/html
+COPY ./sensorthings-v2.1 /var/www/html
 
 # Set working directory
 WORKDIR /var/www/html
