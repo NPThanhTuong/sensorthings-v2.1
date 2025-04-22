@@ -18,7 +18,10 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 # Copy the application code
-COPY ./sensorthings-v2.1 /var/www/html
+# For build by using docker-compose
+# COPY ./sensorthings-v2.1 /var/www/html  
+# For build only image sensorthings
+COPY . /var/www/html 
 
 # Set working directory
 WORKDIR /var/www/html
@@ -27,8 +30,8 @@ WORKDIR /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install project dependencies
-# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
-RUN composer update
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# RUN composer update
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
