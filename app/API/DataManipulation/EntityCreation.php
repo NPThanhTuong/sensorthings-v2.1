@@ -95,9 +95,9 @@ class EntityCreation
                 }
             } else {
                 switch ($targetEntity) {
-                        //encoding type không cần thay đổi nhiều
-                        //nếu muốn thay đổi thì thực hiện query lúc bảo trì project này
-                        //encoding type KHÔNG NÊN có trong danh sách thay đổi
+                    //encoding type không cần thay đổi nhiều
+                    //nếu muốn thay đổi thì thực hiện query lúc bảo trì project này
+                    //encoding type KHÔNG NÊN có trong danh sách thay đổi
                     case 'encodingtypes':
                         $id = $this->createEncodingType($request);
                         break;
@@ -137,7 +137,7 @@ class EntityCreation
 
                 //            $data=OgcUtil::getEntityById($targetEntity,$id);
                 $code = 201;
-                // $location = static::createLocation($targetEntity, $id);
+                $location = static::createLocation($targetEntity, $id);
                 $data = [
                     'message' => 'success',
                     // 'location' => $location
@@ -146,7 +146,7 @@ class EntityCreation
                 $result = [
                     'data' => $data,
                     'code' => $code,
-                    // 'Location' => $location
+                    'Location' => $location
                 ];
             }
             DB::commit();
